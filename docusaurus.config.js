@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Yobi 的网站',
   tagline: 'Dinosaurs are cool',
-  url: 'https://cuzme.github.io/blog/',
+  url: 'https://cuzme.github.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'cuzme', // Usually your GitHub org/user name.
-  projectName: 'blog', // Usually your repo name.
+  projectName: 'cuzme.github.io', // Usually your repo name.
   deploymentBranch: 'deploy',
 
   // Even if you don't use internalization, you can use this field to set useful
