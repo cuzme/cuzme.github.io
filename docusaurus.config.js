@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Yobi 的网站',
-  tagline: 'Dinosaurs are cool',
+  title: 'Yobi',
+  tagline: 'Gentleness is a treasure, and so are you.',
   url: 'https://cuzme.github.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -58,7 +58,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'Yobi的小站',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -68,11 +68,11 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: '笔记',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: '博客', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/cuzme',
             label: 'GitHub',
             position: 'right',
           },
@@ -116,7 +116,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/cuzme',
               },
             ],
           },
