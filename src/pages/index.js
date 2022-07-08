@@ -31,7 +31,6 @@ import styles from './index.module.css';
 
 function Background() {
   const {colorMode} = useColorMode();
-  console.log(colorMode, 'Background')
   return (
       <div className={styles.background} style={{backgroundImage: `url(/img/cool-background-${colorMode}.png)`}}/>
   )

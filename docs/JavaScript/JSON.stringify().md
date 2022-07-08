@@ -119,5 +119,107 @@ let obj = {
 JSON.stringify(obj);  // TypeError: Do not know how to serialize a BigInt
 ```
 
+### 11. JSON.stringify()的第二个参数可以传一个函数，可以帮助我们转译字符串的时候排除一些我们不想要的值。
+
+1.下面这个例子我们发现当我们传入`replace`函数后，我们可以排除掉所有`value`类型是字符串的键值对，只保留`value`类型是数字的键值对。
+```javascript
+let obj = {
+    name: '张三',
+    age: 28,
+    weight: 120,
+    job: '老师'
+};
+
+function replace (key, value) {
+    if(typeof value === 'string'){
+        return undefined;
+    }
+    return value;
+}   
+
+JSON.stringify(obj, replace);  // '{"age":28,"weight":120}'
+```
+
+2.下面这个例子比上面的例子复杂一点，但是我们不难看出`JSON.stringify()`的第二个参数还具有递归的特性，类似深拷贝，所以里层嵌套的属性也是可以生效的。
+
+```javascript
+let obj = {
+    name: '张三',
+    age: 28,
+    list: [
+        {name: 'xxx1', age: 25},
+        {name: 'xxx2', age: 32},
+        {name: 'xxx3', age: 43},
+        {list: {name: 'xxx4', age: 54}},
+    ]
+};
+
+function replace (key, value) {
+    if(typeof value === 'string'){
+        return undefined;
+    }
+    return value;
+}   
+
+JSON.stringify(obj, replace);  // '{"age":28,"list":[{"age":25},{"age":32},{"age":43},{"list":{"age":54}}]}'
+```
+3.另外它的第二个参数也可以是数组形式的如下面的例子所示，可以实现只转译我们需要的键值对。
+```javascript
+let obj = {
+    name: '张三',
+    age: 28,
+    list: [
+        {name: 'xxx1', age: 25},
+        {name: 'xxx2', age: 32},
+        {name: 'xxx3', age: 43},
+        {list: {name: 'xxx4', age: 54}},
+    ]
+};
+
+JSON.stringify(obj, ['name', 'list']);  // '{"name":"张三","list":[{"name":"xxx1"},{"name":"xxx2"},{"name":"xxx3"},{"list":{"name":"xxx4"}}]}'
+```
+
+### 11.JSON.stringify()的第三个参数可以实现以下效果。
+```javascript
+let obj = {
+    name: '张三',
+    age: 28,
+    list: [
+        {name: 'xxx1', age: 25},
+        {name: 'xxx2', age: 32},
+        {name: 'xxx3', age: 43},
+        {list: {name: 'xxx4', age: 54}},
+    ]
+};
+
+JSON.stringify(obj, null, 'aaa');
+
+// {
+//   aaa"name": "张三",
+//   aaa"age": 28,
+//   aaa"list": [
+//   aaaaaa{
+//   aaaaaaaaa"name": "xxx1",
+//   aaaaaaaaa"age": 25
+//   aaaaaa},
+//   aaaaaa{
+//   aaaaaaaaa"name": "xxx2",
+//   aaaaaaaa"age": 32
+//   aaaaaa},
+//   aaaaaa{
+//   aaaaaaaaa"name": "xxx3",
+//   aaaaaaaaa"age": 43
+//   aaaaaa},
+//   aaaaaa{
+//   aaaaaaaaa"list": {
+//   aaaaaaaaaaaa"name": "xxx4",
+//   aaaaaaaaaaaa"age": 54
+//   aaaaaaaaa}
+//   aaaaaa}
+//   aaa]
+// }
+```
+
+
 
 
