@@ -13,8 +13,8 @@ sidebar_position: 5
 www.example.com/index.html#chapter1
 ```
 - 这个地址中我可以找到#chapter1这个#后面的值代表hash值
-- 这个地址代表www.example.com域名下的index.html页面下的chapter1位置
-- 使用a标签<a href="#chapter1">跳转</a>可以帮助我们跳转到该位置
+- 这个地址代表 `www.example.com` 域名下的index.html页面下的chapter1位置
+- 使用a标签 `<a href="#chapter1">跳转</a>` 可以帮助我们跳转到该位置
 - 所以改变#后边的内容也就不会重新发送请求，会发生位置的改变（跳到当前页面的某个位置）
 - 改变#会改变浏览器的历史，会产生一条新的历史记录
 - window.location.hash 获取当前页面的hash值 `#chapter1`
