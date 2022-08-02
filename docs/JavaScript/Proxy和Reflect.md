@@ -176,3 +176,30 @@ const range = (min, max) => {
 10 in range(4, 5) // false
 10 in range(5, 20) // true
 ```
+
+# Reflect
+Reflect是一个内建的对象，用来提供方法去拦截JavaScript的操作。Reflect不是一个函数对象，所以它是不可构造的，也就是说它不是一个构造器，你不能通过 `new` 操作符去新建或者将其作为一个函数去调用Reflect对象。Reflect的所有属性和方法都是静态的。
+
+```javascript
+// 为什么要使用Reflect这个内建对象，或者它与现有的js方法有什么使用区别呢？
+
+Object.defineProperty(obj, name, desc) // 这个通常需要用try catch包裹，因为一旦执行出错，会直接抛出错误。
+Reflect.defineProperty(obj, name, desc) // 不同的是使用Reflect，它的返回值是true和false。
+
+Function.prototype.apply // 这个方法可能被其它代码覆盖，例如我自己写了一个apply方法覆盖了原来的代码。这样使得这个方法变得不可靠
+Reflect.apply(func, obj, arr); // 方法更可靠
+
+let obj = Object.create(null);
+obj.name = '张三'; // 通过此方法创建的对象是没有原型的，所以他就不可以使用Object原型上的方法
+obj.hasOwnProperty('name'); // 这样的话就会报错
+Object.prototype.hasOwnProperty.call(obj, 'name'); // 必须要这么写
+Reflect.has(obj, 'name'); // 这样就不会报错，写法上也比较简洁
+
+
+let s = Symbol('123');
+let obj = {name: '张三', [s]: '123'};
+let all = Object.getOwnPropertySymbols(obj).concat(Object.getOwnPropertyNames(obj));
+// [Symbol(123), 'name']  以上要获取对象的Symbol属性的还是比较麻烦的
+Reflect.ownKeys(obj); // ['name', Symbol(123)] // Reflect 可以很简单就可以做到
+
+```
